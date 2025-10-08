@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
-import hero1 from '../../assets/hero-1.jpeg'
-import hero2 from '../../assets/hero-2.jpg'
+import hero1 from "../../assets/hero-1.jpeg";
+import hero2 from "../../assets/hero-2.jpg";
+
 type Slide = {
   id: string;
   image: any;
@@ -28,7 +29,7 @@ const SLIDES: Slide[] = [
     ctaHref: "/about",
     helpLabel: "HOW WE HELP",
   },
-    {
+  {
     id: "s2",
     image: hero2,
     eyebrow: "WELCOME TO ERDUNT FACTORY AREA",
@@ -80,7 +81,7 @@ export default function HeroSlider() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -15, opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="mb-4 text-xs font-semibold tracking-[0.2em] text-white/80 md:text-sm"
+                  className="mb-4 text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.2em] md:tracking-[0.3em] text-white/80"
                 >
                   {current.eyebrow}
                 </motion.div>
@@ -93,12 +94,12 @@ export default function HeroSlider() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 18, opacity: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl"
+                className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.25] sm:leading-[1.2] md:leading-[1.1] max-w-[18ch] md:max-w-[22ch]"
               >
                 {current.title}
                 {current.subtitle ? (
                   <>
-                    <br />
+                    <br className="hidden sm:block" />
                     {current.subtitle}
                   </>
                 ) : null}
@@ -111,23 +112,27 @@ export default function HeroSlider() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 18, opacity: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
-                className="mt-8 flex items-center gap-5"
+                className="mt-6 sm:mt-8 flex flex-wrap items-center gap-4 sm:gap-5"
               >
                 {current.ctaHref && current.ctaLabel ? (
                   <a
                     href={current.ctaHref}
-                    className="inline-flex items-center justify-center bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-orange-600"
+                    className="inline-flex items-center justify-center rounded bg-orange-500 px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base md:text-lg font-semibold text-white shadow-lg transition hover:bg-orange-600"
                   >
                     {current.ctaLabel}
                   </a>
                 ) : null}
 
-                <button type="button" className="group inline-flex items-center gap-3" aria-label="Play">
-                  <span className="inline-grid h-16 w-16 place-items-center rounded-full border-2 border-white/70 transition group-hover:border-white">
-                    <Play className="h-6 w-6 text-white" />
+                <button
+                  type="button"
+                  className="group inline-flex items-center gap-3"
+                  aria-label="Play"
+                >
+                  <span className="inline-grid h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 place-items-center rounded-full border-2 border-white/70 transition group-hover:border-white">
+                    <Play className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </span>
                   {current.helpLabel ? (
-                    <span className="text-sm font-semibold tracking-wide text-white/90 group-hover:text-white">
+                    <span className="text-xs sm:text-sm md:text-base font-semibold tracking-wide text-white/90 group-hover:text-white">
                       {current.helpLabel}
                     </span>
                   ) : null}
@@ -139,16 +144,16 @@ export default function HeroSlider() {
         <button
           onClick={prev}
           aria-label="Previous slide"
-          className="absolute left-6 top-1/2 -translate-y-1/2 rounded-full border border-white/60 p-4 text-white/90 backdrop-blur-sm transition hover:text-white"
+          className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 rounded-full border border-white/60 p-3 sm:p-4 text-white/90 backdrop-blur-sm transition hover:text-white"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
         <button
           onClick={next}
           aria-label="Next slide"
-          className="absolute right-6 top-1/2 -translate-y-1/2 rounded-full border border-white/60 p-4 text-white/90 backdrop-blur-sm transition hover:text-white"
+          className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 rounded-full border border-white/60 p-3 sm:p-4 text-white/90 backdrop-blur-sm transition hover:text-white"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
       </div>
     </section>

@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import { Home, Search } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 type MenuItem = {
   label: string;
@@ -32,8 +33,19 @@ const MENU: MenuItem[] = [
   { label: "CONTACT", href: "/contact" },
 ];
 
-export default function SiteNav() {
+export default function MenuItems() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const onKeyOpen = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      const el = (e.currentTarget.nextSibling as HTMLElement) ?? null;
+      el?.classList.add("visible", "opacity-100", "translate-y-0");
+    }
+  };
+
+  const isActive = (href?: string) =>
+    !!href && (pathname === href || pathname.startsWith(href + "/"));
 
   return (
     <nav className="relative">
@@ -43,6 +55,7 @@ export default function SiteNav() {
             <button
               className="md:hidden inline-flex items-center justify-center w-14 bg-orange-500 text-white"
               aria-label="Toggle menu"
+              aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
               <div className="space-y-1.5">
@@ -56,38 +69,55 @@ export default function SiteNav() {
               href="/"
               className="hidden md:inline-flex items-center px-4 bg-orange-500 text-white"
               aria-label="Home"
+              title="Home"
             >
               <Home className="h-5 w-5" />
             </Link>
           </div>
           <div className="flex-1 bg-[#3e0097] text-white">
-            <ul className="hidden md:flex h-full items-center gap-8 px-6">
+            <ul className="hidden md:flex h-full items-center gap-6 lg:gap-8 px-4 lg:px-6">
               {MENU.map((item) => (
-                <li key={item.label} className="relative group h-full inline-flex items-center">
+                <li
+                  key={item.label}
+                  className="relative group h-full inline-flex items-center"
+                >
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="text-sm font-semibold tracking-wide hover:opacity-90"
+                      className={`transition hover:opacity-90
+                        text-[13px] sm:text-sm md:text-[15px] font-semibold tracking-wide
+                        ${isActive(item.href) ? "opacity-100 underline underline-offset-4" : "opacity-90"}
+                      `}
                     >
                       {item.label}
                     </Link>
                   ) : (
                     <button
-                      className="text-sm font-semibold tracking-wide hover:opacity-90"
+                      className="text-[13px] sm:text-sm md:text-[15px] font-semibold tracking-wide hover:opacity-90"
                       aria-haspopup="menu"
+                      aria-expanded="false"
+                      onKeyDown={onKeyOpen}
                     >
                       {item.label}
                     </button>
                   )}
                   {item.children?.length ? (
-                    <div className="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 absolute left-0 top-full mt-0 w-56 transition-all duration-150 z-50">
+                    <div
+                      className="invisible opacity-0 translate-y-2
+                                 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                                 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0
+                                 absolute left-0 top-full mt-0 w-56 transition-all duration-150 z-50"
+                      role="menu"
+                    >
                       <div className="rounded-md border border-white/10 bg-[#2a006a] shadow-lg">
                         <ul className="py-2">
                           {item.children.map((c) => (
                             <li key={c.href}>
                               <Link
                                 href={c.href}
-                                className="block px-4 py-2 text-sm hover:bg-white/10"
+                                className={`block px-4 py-2 text-[13px] sm:text-sm hover:bg-white/10
+                                  ${isActive(c.href) ? "bg-white/10" : ""}`}
+                                role="menuitem"
                               >
                                 {c.label}
                               </Link>
@@ -124,15 +154,20 @@ export default function SiteNav() {
                   {item.children?.length ? (
                     <details className="group">
                       <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3">
-                        <span className="text-sm font-semibold">{item.label}</span>
-                        <span className="ml-2 text-white/80 group-open:rotate-180 transition-transform">▾</span>
+                        <span className="text-sm sm:text-base font-semibold">
+                          {item.label}
+                        </span>
+                        <span className="ml-2 text-white/80 group-open:rotate-180 transition-transform">
+                          ▾
+                        </span>
                       </summary>
                       <ul className="mt-1 pl-4">
                         {item.children.map((c) => (
                           <li key={c.href}>
                             <Link
                               href={c.href}
-                              className="block px-4 py-2 text-sm text-white/90 hover:text-white"
+                              className={`block px-4 py-2 text-sm sm:text-base text-white/90 hover:text-white
+                                ${isActive(c.href) ? "underline underline-offset-4" : ""}`}
                               onClick={() => setOpen(false)}
                             >
                               {c.label}
@@ -144,7 +179,8 @@ export default function SiteNav() {
                   ) : (
                     <Link
                       href={item.href ?? "#"}
-                      className="block px-4 py-3 text-sm font-semibold"
+                      className={`block px-4 py-3 text-sm sm:text-base font-semibold
+                        ${isActive(item.href) ? "underline underline-offset-4" : ""}`}
                       onClick={() => setOpen(false)}
                     >
                       {item.label}
