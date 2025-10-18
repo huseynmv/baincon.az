@@ -57,7 +57,7 @@ export default function HeroSlider() {
 
   return (
     <section className="relative isolate">
-      <div className="relative h-[72vh] min-h-[540px] w-full md:h-[78vh] lg:h-[86vh]">
+      <div className="relative h-[72vh] min-h-[540px] w-full md:h-[78vh] lg:h-[86vh] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
@@ -72,7 +72,7 @@ export default function HeroSlider() {
           </motion.div>
         </AnimatePresence>
         <div className="absolute inset-0">
-          <div className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center text-white">
+          <div className="mx-auto flex h-full max-w-[1440px] overflow-hidden flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center text-white">
             {current.eyebrow ? (
               <AnimatePresence mode="wait">
                 <motion.div
