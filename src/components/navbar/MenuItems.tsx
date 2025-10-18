@@ -21,14 +21,14 @@ const MENU: MenuItem[] = [
       { label: "Consulting", href: "/services/consulting" },
     ],
   },
-  {
-    label: "PAGES",
-    children: [
-      { label: "Our Team", href: "/team" },
-      { label: "Careers", href: "/careers" },
-      { label: "FAQ", href: "/faq" },
-    ],
-  },
+  // {
+  //   label: "PAGES",
+  //   children: [
+  //     { label: "Our Team", href: "/team" },
+  //     { label: "Careers", href: "/careers" },
+  //     { label: "FAQ", href: "/faq" },
+  //   ],
+  // },
   { label: "NEWS", href: "/news" },
   { label: "CONTACT", href: "/contact" },
 ];
@@ -75,7 +75,7 @@ export default function MenuItems() {
             </Link>
           </div>
           <div className="flex-1 bg-[#3e0097] text-white">
-            <ul className="hidden md:flex h-full items-center gap-6 lg:gap-8 px-4 lg:px-6">
+            <ul className="hidden md:flex h-full items-center justify-center gap-6 lg:gap-8 px-4 lg:px-6">
               {MENU.map((item) => (
                 <li
                   key={item.label}
@@ -131,13 +131,13 @@ export default function MenuItems() {
               ))}
             </ul>
           </div>
-          <button
+          {/* <button
             className="inline-flex items-center justify-center w-12 border-l border-white/20 bg-[#33007f] text-white"
             aria-label="Search"
             title="Search"
           >
             <Search className="h-5 w-5" />
-          </button>
+          </button> */}
 
           <Link
             href="/estimate"
