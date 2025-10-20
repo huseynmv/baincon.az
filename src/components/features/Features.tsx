@@ -21,13 +21,13 @@ const CARDS: Card[] = [
 
 export default function FactoryFeatures() {
   return (
-    <section className="relative py-10 sm:py-14 lg:py-20">
+    <section className="relative py-10 sm:py-14 lg:py-20" >
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="flex flex-col justify-center">
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-0.5 w-8 bg-violet-700" />
-              <span className="text-xs sm:text-sm font-semibold text-orange-500">
+              <span className="text-xs sm:text-sm font-semibold text-orange-500" >
                 Erdunt Is The Industry Leaders
               </span>
             </div>
@@ -61,7 +61,7 @@ export default function FactoryFeatures() {
           </div>
         </div>
         <motion.ul
-          className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-4"
+          className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-4" 
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}

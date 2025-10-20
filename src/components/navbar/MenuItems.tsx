@@ -11,8 +11,8 @@ type MenuItem = {
   children?: { label: string; href: string }[];
 };
 
-const MENU: MenuItem[] = [
-  { label: "ABOUT US", href: "/about" },
+export const MENU: MenuItem[] = [
+  { label: "ABOUT US", href: "#about" },
   {
     label: "SERVICES",
     children: [
@@ -21,16 +21,8 @@ const MENU: MenuItem[] = [
       { label: "Consulting", href: "/services/consulting" },
     ],
   },
-  // {
-  //   label: "PAGES",
-  //   children: [
-  //     { label: "Our Team", href: "/team" },
-  //     { label: "Careers", href: "/careers" },
-  //     { label: "FAQ", href: "/faq" },
-  //   ],
-  // },
-  { label: "NEWS", href: "/news" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "PROJECTS", href: "#projects" },
+  { label: "CONTACT", href: "#contact" },
 ];
 
 export default function MenuItems() {
@@ -84,10 +76,9 @@ export default function MenuItems() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className={`transition hover:opacity-90
-                        text-[13px] sm:text-sm md:text-[15px] font-semibold tracking-wide
-                        ${isActive(item.href) ? "opacity-100 underline underline-offset-4" : "opacity-90"}
-                      `}
+                      className={`block px-4 py-2 text-[13px] sm:text-sm hover:bg-white/10
+    ${isActive(item.href) ? "bg-white/10" : ""}`}
+                      role="menuitem"
                     >
                       {item.label}
                     </Link>
@@ -131,14 +122,6 @@ export default function MenuItems() {
               ))}
             </ul>
           </div>
-          {/* <button
-            className="inline-flex items-center justify-center w-12 border-l border-white/20 bg-[#33007f] text-white"
-            aria-label="Search"
-            title="Search"
-          >
-            <Search className="h-5 w-5" />
-          </button> */}
-
           <Link
             href="/estimate"
             className="hidden md:inline-flex items-center px-5 bg-orange-500 text-white font-semibold"
@@ -167,7 +150,11 @@ export default function MenuItems() {
                             <Link
                               href={c.href}
                               className={`block px-4 py-2 text-sm sm:text-base text-white/90 hover:text-white
-                                ${isActive(c.href) ? "underline underline-offset-4" : ""}`}
+                                ${
+                                  isActive(c.href)
+                                    ? "underline underline-offset-4"
+                                    : ""
+                                }`}
                               onClick={() => setOpen(false)}
                             >
                               {c.label}
@@ -180,7 +167,11 @@ export default function MenuItems() {
                     <Link
                       href={item.href ?? "#"}
                       className={`block px-4 py-3 text-sm sm:text-base font-semibold
-                        ${isActive(item.href) ? "underline underline-offset-4" : ""}`}
+                        ${
+                          isActive(item.href)
+                            ? "underline underline-offset-4"
+                            : ""
+                        }`}
                       onClick={() => setOpen(false)}
                     >
                       {item.label}
