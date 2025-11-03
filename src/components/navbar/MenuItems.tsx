@@ -29,7 +29,7 @@ export const MENU: MenuItem[] = [
 export default function MenuItems() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { t } = useLocale();
+  const { t, locale, setLocale } = useLocale();
 
   const onKeyOpen = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -40,6 +40,12 @@ export default function MenuItems() {
 
   const isActive = (href?: string) =>
     !!href && (pathname === href || pathname.startsWith(href + "/"));
+
+  const LANGUAGES = [
+    { label: "EN", code: "en" },
+    { label: "AZ", code: "az" },
+    { label: "RU", code: "ru" },
+  ];
 
   return (
     <nav className="relative">
@@ -175,6 +181,23 @@ export default function MenuItems() {
                 </li>
               ))}
             </ul>
+            <div className="flex justify-center gap-4 py-4 border-t border-white/10">
+              {["en", "az", "ru"].map((code) => (
+                <button
+                  key={code}
+                  onClick={() => {
+                    setLocale(code as "en" | "az" | "ru");
+                    setOpen(false);
+                  }}
+                  className={`px-3 py-1 rounded border ${locale === code
+                    ? "border-white bg-white/20 text-white"
+                    : "border-white/40 text-white/70 hover:bg-white/10"
+                    } text-sm font-semibold transition`}
+                >
+                  {code.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>
