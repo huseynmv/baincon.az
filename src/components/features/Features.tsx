@@ -3,65 +3,66 @@
 import { motion } from "framer-motion";
 import { Factory, HardHat, Microscope, CircuitBoard } from "lucide-react";
 import FeatureCard from "./FeatureCard";
+import { useLocale } from "@/locales/LocaleProvider";
 
 const STAGGER = 0.12;
 
-type Card = {
-  id: number;
-  title: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-};
-
-const CARDS: Card[] = [
-  { id: 1, title: "Latest Technology", Icon: CircuitBoard },
-  { id: 2, title: "Latest Technology", Icon: Factory },
-  { id: 3, title: "Latest Technology", Icon: HardHat },
-  { id: 4, title: "Latest Technology", Icon: Microscope },
-];
-
 export default function FactoryFeatures() {
+  const { t } = useLocale();
+
+  const CARDS = [
+    { id: 1, title: t("features.latestTechnology"), Icon: CircuitBoard },
+    { id: 2, title: t("features.latestTechnology"), Icon: Factory },
+    { id: 3, title: t("features.latestTechnology"), Icon: HardHat },
+    { id: 4, title: t("features.latestTechnology"), Icon: Microscope },
+  ];
+
+  const LIST_ITEMS = [
+    t("features.list.item1"),
+    t("features.list.item2"),
+    t("features.list.item3"),
+  ];
+
   return (
-    <section className="relative py-10 sm:py-14 lg:py-20" >
+    <section className="relative py-10 sm:py-14 lg:py-20">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="flex flex-col justify-center">
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-0.5 w-8 bg-violet-700" />
-              <span className="text-xs sm:text-sm font-semibold text-orange-500" >
-                Erdunt Is The Industry Leaders
+              <span className="text-xs sm:text-sm font-semibold text-orange-500">
+                {t("features.eyebrow")}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
-              Our Factory Produces <br className="hidden sm:block" />
-              Reliable, Efficient, Safe <br className="hidden sm:block" />
-              &amp; Sustainable Products.
+              {t("features.titleLine1")}
+              <br className="hidden sm:block" />
+              {t("features.titleLine2")}
+              <br className="hidden sm:block" />
+              {t("features.titleLine3")}
             </h2>
           </div>
-          <div className="flex flex-col justify-center mt-10    ">
+
+          <div className="flex flex-col justify-center mt-10">
             <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-700">
-              Incididunt ut labore et dolore magna aliqua. At enim ipsum dnim veniam, quis nos trud exercitation
-              dolor ullamco laboris nisi ut aliquip ex ea comaody consequat duisaute irure dolor in reprehenderit
-              in voluptate velit.
+              {t("features.description")}
             </p>
 
             <ul className="mt-4 space-y-3">
-              {[
-                "Leading industrial solutions with best machinery",
-                "Voluptatem acusantium doloremque laudantium totam",
-                "Aperiam sed eafy que ipsa quae ab illo inventore veritatis",
-              ].map((t, i) => (
+              {LIST_ITEMS.map((text, i) => (
                 <li key={i} className="flex items-start gap-3 text-gray-800">
                   <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-orange-500 text-orange-500 text-xs">
                     •
                   </span>
-                  <span className="text-sm sm:text-base font-semibold">{t}</span>
+                  <span className="text-sm sm:text-base font-semibold">{text}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
+
         <motion.ul
-          className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-4" 
+          className="mt-10 grid gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-4"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
@@ -86,4 +87,3 @@ export default function FactoryFeatures() {
     </section>
   );
 }
-

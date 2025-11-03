@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import hero1 from "../../assets/hero-1.jpeg";
 import hero2 from "../../assets/hero-2.jpg";
+import { useLocale } from "@/locales/LocaleProvider";
 
 type Slide = {
   id: string;
@@ -18,39 +19,41 @@ type Slide = {
   helpLabel?: string;
 };
 
-const SLIDES: Slide[] = [
-  {
-    id: "s1",
-    image: hero1,
-    eyebrow: "WELCOME TO ERDUNT FACTORY AREA",
-    title: "Build Quality Products",
-    subtitle: "For The Industry’s Future",
-    ctaLabel: "LEARN MORE",
-    ctaHref: "/about",
-    helpLabel: "HOW WE HELP",
-  },
-  {
-    id: "s2",
-    image: hero2,
-    eyebrow: "WELCOME TO ERDUNT FACTORY AREA",
-    title: "Build Quality Products",
-    subtitle: "For The Industry’s Future",
-    ctaLabel: "LEARN MORE",
-    ctaHref: "/about",
-    helpLabel: "HOW WE HELP",
-  },
-];
-
 const AUTOPLAY_MS = 6500;
 
 export default function HeroSlider() {
+  const { t } = useLocale();
   const [index, setIndex] = useState(0);
-  const current = useMemo(() => SLIDES[index], [index]);
+
+  const SLIDES: Slide[] = [
+    {
+      id: "s1",
+      image: hero1,
+      eyebrow: t("hero.eyebrow"),
+      title: t("hero.title"),
+      subtitle: t("hero.subtitle"),
+      ctaLabel: t("hero.ctaLabel"),
+      ctaHref: "/about",
+      helpLabel: t("hero.helpLabel"),
+    },
+    {
+      id: "s2",
+      image: hero2,
+      eyebrow: t("hero.eyebrow"),
+      title: t("hero.title"),
+      subtitle: t("hero.subtitle"),
+      ctaLabel: t("hero.ctaLabel"),
+      ctaHref: "/about",
+      helpLabel: t("hero.helpLabel"),
+    },
+  ];
+
+  const current = useMemo(() => SLIDES[index], [index, t]);
 
   useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % SLIDES.length), AUTOPLAY_MS);
-    return () => clearInterval(t);
-  }, []);
+    const tId = setInterval(() => setIndex((i) => (i + 1) % SLIDES.length), AUTOPLAY_MS);
+    return () => clearInterval(tId);
+  }, [SLIDES.length]);
 
   const prev = () => setIndex((i) => (i - 1 + SLIDES.length) % SLIDES.length);
   const next = () => setIndex((i) => (i + 1) % SLIDES.length);
@@ -72,8 +75,8 @@ export default function HeroSlider() {
           </motion.div>
         </AnimatePresence>
         <div className="absolute inset-0">
-          <div className="mx-auto flex h-full max-w-[1440px] overflow-hidden flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center text-white">
-            {current.eyebrow ? (
+          <div className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center text-white">
+            {current.eyebrow && (
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`eyebrow-${current.id}`}
@@ -81,12 +84,12 @@ export default function HeroSlider() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -15, opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="mb-4 text-[10px] sm:text-xs md:text-sm font-semibold tracking-[0.2em] md:tracking-[0.3em] text-white/80"
+                  className="mb-3 text-[9px] sm:text-[10px] md:text-xs font-semibold tracking-[0.15em] md:tracking-[0.2em] text-white/80"
                 >
                   {current.eyebrow}
                 </motion.div>
               </AnimatePresence>
-            ) : null}
+            )}
             <AnimatePresence mode="wait">
               <motion.h1
                 key={`title-${current.id}`}
@@ -94,15 +97,15 @@ export default function HeroSlider() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 18, opacity: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.25] sm:leading-[1.2] md:leading-[1.1] max-w-[18ch] md:max-w-[22ch]"
+                className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-6xl font-extrabold leading-[1.25] sm:leading-[1.2] md:leading-[1.15] max-w-[18ch] md:max-w-[22ch]"
               >
                 {current.title}
-                {current.subtitle ? (
+                {current.subtitle && (
                   <>
                     <br className="hidden sm:block" />
                     {current.subtitle}
                   </>
-                ) : null}
+                )}
               </motion.h1>
             </AnimatePresence>
             <AnimatePresence mode="wait">
@@ -114,14 +117,14 @@ export default function HeroSlider() {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
                 className="mt-6 sm:mt-8 flex flex-wrap items-center gap-4 sm:gap-5"
               >
-                {current.ctaHref && current.ctaLabel ? (
+                {current.ctaHref && current.ctaLabel && (
                   <a
                     href={current.ctaHref}
                     className="inline-flex items-center justify-center rounded bg-orange-500 px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base md:text-lg font-semibold text-white shadow-lg transition hover:bg-orange-600"
                   >
                     {current.ctaLabel}
                   </a>
-                ) : null}
+                )}
 
                 <button
                   type="button"
@@ -131,11 +134,11 @@ export default function HeroSlider() {
                   <span className="inline-grid h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 place-items-center rounded-full border-2 border-white/70 transition group-hover:border-white">
                     <Play className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </span>
-                  {current.helpLabel ? (
-                    <span className="text-xs sm:text-sm md:text-base font-semibold tracking-wide text-white/90 group-hover:text-white">
+                  {current.helpLabel && (
+                    <span className="text-[9px] sm:text-xs md:text-sm font-semibold tracking-wide text-white/90 group-hover:text-white">
                       {current.helpLabel}
                     </span>
-                  ) : null}
+                  )}
                 </button>
               </motion.div>
             </AnimatePresence>

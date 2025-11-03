@@ -2,32 +2,34 @@
 
 import Link from "next/link";
 import { useState, KeyboardEvent } from "react";
-import { Home, Search } from "lucide-react";
+import { Home } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useLocale } from "@/locales/LocaleProvider";
 
 type MenuItem = {
-  label: string;
+  key: string;
   href?: string;
-  children?: { label: string; href: string }[];
+  children?: { key: string; href: string }[];
 };
 
 export const MENU: MenuItem[] = [
-  { label: "ABOUT US", href: "#about" },
+  { key: "menu.about", href: "#about" },
   {
-    label: "SERVICES",
+    key: "menu.services",
     children: [
-      { label: "Fabrication", href: "/services/fabrication" },
-      { label: "Maintenance", href: "/services/maintenance" },
-      { label: "Consulting", href: "/services/consulting" },
+      { key: "menu.services.fabrication", href: "/services/fabrication" },
+      { key: "menu.services.maintenance", href: "/services/maintenance" },
+      { key: "menu.services.consulting", href: "/services/consulting" },
     ],
   },
-  { label: "PROJECTS", href: "#projects" },
-  { label: "CONTACT", href: "#contact" },
+  { key: "menu.projects", href: "#projects" },
+  { key: "menu.contact", href: "#contact" },
 ];
 
 export default function MenuItems() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useLocale();
 
   const onKeyOpen = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -66,21 +68,22 @@ export default function MenuItems() {
               <Home className="h-5 w-5" />
             </Link>
           </div>
+
           <div className="flex-1 bg-[#3e0097] text-white">
             <ul className="hidden md:flex h-full items-center justify-center gap-6 lg:gap-8 px-4 lg:px-6">
               {MENU.map((item) => (
                 <li
-                  key={item.label}
+                  key={item.key}
                   className="relative group h-full inline-flex items-center"
                 >
                   {item.href ? (
                     <Link
                       href={item.href}
                       className={`block px-4 py-2 text-[13px] sm:text-sm hover:bg-white/10
-    ${isActive(item.href) ? "bg-white/10" : ""}`}
+                        ${isActive(item.href) ? "bg-white/10" : ""}`}
                       role="menuitem"
                     >
-                      {item.label}
+                      {t(item.key)}
                     </Link>
                   ) : (
                     <button
@@ -89,7 +92,7 @@ export default function MenuItems() {
                       aria-expanded="false"
                       onKeyDown={onKeyOpen}
                     >
-                      {item.label}
+                      {t(item.key)}
                     </button>
                   )}
                   {item.children?.length ? (
@@ -110,7 +113,7 @@ export default function MenuItems() {
                                   ${isActive(c.href) ? "bg-white/10" : ""}`}
                                 role="menuitem"
                               >
-                                {c.label}
+                                {t(c.key)}
                               </Link>
                             </li>
                           ))}
@@ -126,19 +129,19 @@ export default function MenuItems() {
             href="/estimate"
             className="hidden md:inline-flex items-center px-5 bg-orange-500 text-white font-semibold"
           >
-            GET AN ESTIMATE
+            {t("menu.getEstimate")}
           </Link>
         </div>
         {open && (
           <div className="md:hidden bg-[#3e0097] text-white border-t border-white/10">
             <ul className="divide-y divide-white/10 py-2">
               {MENU.map((item) => (
-                <li key={item.label} className="py-1">
+                <li key={item.key} className="py-1">
                   {item.children?.length ? (
                     <details className="group">
                       <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3">
                         <span className="text-sm sm:text-base font-semibold">
-                          {item.label}
+                          {t(item.key)}
                         </span>
                         <span className="ml-2 text-white/80 group-open:rotate-180 transition-transform">
                           ▾
@@ -150,14 +153,10 @@ export default function MenuItems() {
                             <Link
                               href={c.href}
                               className={`block px-4 py-2 text-sm sm:text-base text-white/90 hover:text-white
-                                ${
-                                  isActive(c.href)
-                                    ? "underline underline-offset-4"
-                                    : ""
-                                }`}
+                                ${isActive(c.href) ? "underline underline-offset-4" : ""}`}
                               onClick={() => setOpen(false)}
                             >
-                              {c.label}
+                              {t(c.key)}
                             </Link>
                           </li>
                         ))}
@@ -167,14 +166,10 @@ export default function MenuItems() {
                     <Link
                       href={item.href ?? "#"}
                       className={`block px-4 py-3 text-sm sm:text-base font-semibold
-                        ${
-                          isActive(item.href)
-                            ? "underline underline-offset-4"
-                            : ""
-                        }`}
+                        ${isActive(item.href) ? "underline underline-offset-4" : ""}`}
                       onClick={() => setOpen(false)}
                     >
-                      {item.label}
+                      {t(item.key)}
                     </Link>
                   )}
                 </li>

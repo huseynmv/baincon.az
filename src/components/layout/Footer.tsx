@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Facebook,
   Twitter,
@@ -8,8 +10,11 @@ import {
   Mail,
   Clock,
 } from "lucide-react";
+import { useLocale } from "@/locales/LocaleProvider";
 
 export default function Footer() {
+  const { t } = useLocale();
+
   return (
     <footer className="text-gray-700 text-sm w-full">
       <div className="grid grid-cols-1 md:grid-cols-4">
@@ -18,20 +23,18 @@ export default function Footer() {
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-orange-500 rounded-md" />
               <div>
-                <h2 className="text-xl font-semibold text-gray-800">ERDUNT</h2>
-                <p className="text-xs text-gray-500">The Industry Leaders</p>
+                <h2 className="text-xl font-semibold text-gray-800">{t("footer.company")}</h2>
+                <p className="text-xs text-gray-500">{t("footer.tagline")}</p>
               </div>
             </div>
 
             <p className="text-gray-500 leading-relaxed mb-6 max-w-xs">
-              Significantly pushed and the frugal lemur one and meretricious
-              lucrative inside before swept magnificently expand our Industries
-              via. Lorem ipsum dolor sit amet adipiscing.
+              {t("footer.description")}
             </p>
           </div>
 
           <div>
-            <p className="font-medium mb-3 text-gray-800">Connect With Us</p>
+            <p className="font-medium mb-3 text-gray-800">{t("footer.connectWithUs")}</p>
             <div className="flex space-x-3 text-gray-400">
               <a href="#"><Facebook className="w-5 h-5 hover:text-blue-500" /></a>
               <a href="#"><Twitter className="w-5 h-5 hover:text-sky-400" /></a>
@@ -43,31 +46,31 @@ export default function Footer() {
 
         <div className="bg-white px-10 py-12 md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-10">
           <div>
-            <h3 className="font-semibold text-gray-800 mb-3">Our Industry</h3>
+            <h3 className="font-semibold text-gray-800 mb-3">{t("footer.industry")}</h3>
             <ul className="space-y-2 text-gray-500">
-              <li><a href="#">Oil & Gas Engineering</a></li>
-              <li><a href="#">Chemical Research</a></li>
-              <li><a href="#">Industrial Equipments</a></li>
-              <li><a href="#">Building & Construction</a></li>
-              <li><a href="#">Energy Production</a></li>
-              <li><a href="#">Agricultural Sectors</a></li>
+              <li><a href="#">{t("footer.industry.oilGas")}</a></li>
+              <li><a href="#">{t("footer.industry.chemical")}</a></li>
+              <li><a href="#">{t("footer.industry.equipment")}</a></li>
+              <li><a href="#">{t("footer.industry.building")}</a></li>
+              <li><a href="#">{t("footer.industry.energy")}</a></li>
+              <li><a href="#">{t("footer.industry.agriculture")}</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-800 mb-3">About Erdunt</h3>
+            <h3 className="font-semibold text-gray-800 mb-3">{t("footer.about")}</h3>
             <ul className="space-y-2 text-gray-500">
-              <li><a href="#">Company Information</a></li>
-              <li><a href="#">Chain Of Factories</a></li>
-              <li><a href="#">Our Workforce</a></li>
-              <li><a href="#">Site Map</a></li>
-              <li><a href="#">Project Opportunities</a></li>
-              <li><a href="#">Approach & History</a></li>
+              <li><a href="#">{t("footer.about.companyInfo")}</a></li>
+              <li><a href="#">{t("footer.about.factories")}</a></li>
+              <li><a href="#">{t("footer.about.workforce")}</a></li>
+              <li><a href="#">{t("footer.about.sitemap")}</a></li>
+              <li><a href="#">{t("footer.about.opportunities")}</a></li>
+              <li><a href="#">{t("footer.about.history")}</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-800 mb-3">Contact Us</h3>
+            <h3 className="font-semibold text-gray-800 mb-3">{t("footer.contact")}</h3>
             <ul className="space-y-3 text-gray-500">
               <li className="flex items-start space-x-2">
                 <Phone className="w-4 h-4 mt-1 text-orange-500" />
@@ -85,7 +88,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start space-x-2">
                 <Clock className="w-4 h-4 mt-1 text-orange-500" />
-                <span>Monday to Fri: 9 am to 6 pm</span>
+                <span>{t("footer.hours")}</span>
               </li>
             </ul>
           </div>
@@ -93,10 +96,10 @@ export default function Footer() {
       </div>
 
       <div className="bg-white border-t text-center py-4 text-gray-400 text-xs">
-        © 2021 <span className="font-semibold text-gray-600">Erdunt</span>. All rights reserved. &nbsp;|&nbsp;
-        <a href="#">Investors</a> &nbsp;|&nbsp;
-        <a href="#">Careers</a> &nbsp;|&nbsp;
-        <a href="#">Downloads</a>
+        © 2021 <span className="font-semibold text-gray-600">Erdunt</span>. {t("footer.rights")}&nbsp;|&nbsp;
+        <a href="#">{t("footer.investors")}</a>&nbsp;|&nbsp;
+        <a href="#">{t("footer.careers")}</a>&nbsp;|&nbsp;
+        <a href="#">{t("footer.downloads")}</a>
       </div>
     </footer>
   );
