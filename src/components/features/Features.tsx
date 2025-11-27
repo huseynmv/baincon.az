@@ -11,10 +11,10 @@ export default function FactoryFeatures() {
   const { t } = useLocale();
 
   const CARDS = [
-    { id: 1, title: t("features.latestTechnology"), Icon: CircuitBoard },
-    { id: 2, title: t("features.latestTechnology"), Icon: Factory },
-    { id: 3, title: t("features.latestTechnology"), Icon: HardHat },
-    { id: 4, title: t("features.latestTechnology"), Icon: Microscope },
+    { id: 1, title: t("features.advancedMachinery"), Icon: Factory },
+    { id: 2, title: t("features.safetyStandards"), Icon: HardHat },
+    { id: 3, title: t("features.researchAndInnovation"), Icon: Microscope },
+    { id: 4, title: t("features.qualityControl"), Icon: CircuitBoard },
   ];
 
   const LIST_ITEMS = [

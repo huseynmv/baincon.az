@@ -10,7 +10,7 @@ import { useLocale } from "@/locales/LocaleProvider";
 
 type Slide = {
   id: string;
-  image: any;
+  videoUrl: string;
   eyebrow?: string;
   title: string;
   subtitle?: string;
@@ -28,7 +28,7 @@ export default function HeroSlider() {
   const SLIDES: Slide[] = [
     {
       id: "s1",
-      image: hero1,
+      videoUrl: "/images/herovideo1.mp4",
       eyebrow: t("hero.eyebrow"),
       title: t("hero.title"),
       subtitle: t("hero.subtitle"),
@@ -38,7 +38,27 @@ export default function HeroSlider() {
     },
     {
       id: "s2",
-      image: hero2,
+      videoUrl: "/images/herovideo2.mp4",
+      eyebrow: t("hero.eyebrow"),
+      title: t("hero.title"),
+      subtitle: t("hero.subtitle"),
+      ctaLabel: t("hero.ctaLabel"),
+      ctaHref: "/about",
+      helpLabel: t("hero.helpLabel"),
+    },
+    {
+      id: "s3",
+      videoUrl: "/images/herovideo3.mp4",
+      eyebrow: t("hero.eyebrow"),
+      title: t("hero.title"),
+      subtitle: t("hero.subtitle"),
+      ctaLabel: t("hero.ctaLabel"),
+      ctaHref: "/about",
+      helpLabel: t("hero.helpLabel"),
+    },
+    {
+      id: "s4",
+      videoUrl: "/images/herovideo4.mp4",
       eyebrow: t("hero.eyebrow"),
       title: t("hero.title"),
       subtitle: t("hero.subtitle"),
@@ -70,7 +90,14 @@ export default function HeroSlider() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="absolute inset-0"
           >
-            <Image src={current.image} alt="" fill priority className="object-cover" />
+            <video
+              src={current.videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-black/50" />
           </motion.div>
         </AnimatePresence>
@@ -99,13 +126,13 @@ export default function HeroSlider() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-6xl font-extrabold leading-[1.25] sm:leading-[1.2] md:leading-[1.15] max-w-[18ch] md:max-w-[22ch]"
               >
-                {current.title}
                 {current.subtitle && (
                   <>
-                    <br className="hidden sm:block" />
                     {current.subtitle}
+                    <br className="hidden sm:block" />
                   </>
                 )}
+                {current.title}
               </motion.h1>
             </AnimatePresence>
             <AnimatePresence mode="wait">
@@ -117,7 +144,7 @@ export default function HeroSlider() {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
                 className="mt-6 sm:mt-8 flex flex-wrap items-center gap-4 sm:gap-5"
               >
-                {current.ctaHref && current.ctaLabel && (
+                {/* {current.ctaHref && current.ctaLabel && (
                   <a
                     href={current.ctaHref}
                     className="inline-flex items-center justify-center rounded bg-orange-500 px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base md:text-lg font-semibold text-white shadow-lg transition hover:bg-orange-600"
@@ -139,7 +166,7 @@ export default function HeroSlider() {
                       {current.helpLabel}
                     </span>
                   )}
-                </button>
+                </button> */}
               </motion.div>
             </AnimatePresence>
           </div>

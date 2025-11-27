@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Phone, Clock3, MapPin } from "lucide-react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo_main.png";
 import { useLocale } from "@/locales/LocaleProvider";
 
 function InfoItem({
@@ -37,19 +37,37 @@ export default function HeaderTop() {
     <header className="bg-white">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-center md:hidden">
-          <Image src={logo} alt="Logo" priority className="h-10 w-auto" />
+          <Image src={logo} alt="Logo" width={256} height={56} priority className="h-[56px] w-9/10 ml-[70px] object-cover" />
         </div>
         <div className="hidden md:grid md:grid-cols-5 md:items-center md:gap-4 py-4">
           <div className="flex items-center">
-            <Image src={logo} alt="Logo" className="h-14 w-auto" />
+            <Image src={logo} alt="Logo" width={256} height={56} priority className="h-[56px] w-[256px] object-cover" />
           </div>
 
           <div className="md:border-l md:border-gray-200 md:pl-6">
             <InfoItem
               icon={<Phone className="h-4 w-4" aria-hidden="true" />}
               label={t("header.callLabel")}
-              value={<span>{t("header.callValue")}</span>}
-              href="tel:+19342567850"
+              value={
+                <span className="space-x-2">
+                  <a
+                    href="https://wa.me/994552068989"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    (+994) 55 206 89 89
+                  </a>
+                  <a
+                    href="https://wa.me/994516717193"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    (+994) 51 123 45 67
+                  </a>
+                </span>
+              }
             />
           </div>
 

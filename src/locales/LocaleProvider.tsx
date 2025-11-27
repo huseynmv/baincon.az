@@ -13,7 +13,7 @@ interface LocaleContextType {
     t: (key: string) => string;
 }
 
-const messages: Record<Locale, Record<string, string>> = { en, az, ru };
+const messages: Record<Locale, Record<string, any>> = { en, az, ru };
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 

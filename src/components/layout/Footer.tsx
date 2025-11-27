@@ -16,7 +16,7 @@ export default function Footer() {
   const { t } = useLocale();
 
   return (
-    <footer className="text-gray-700 text-sm w-full">
+    <footer id="contact" className="text-gray-700 text-sm w-full">
       <div className="grid grid-cols-1 md:grid-cols-4">
         <div className="bg-[#f3f4fa] px-10 py-12 flex flex-col justify-between">
           <div>
@@ -96,7 +96,7 @@ export default function Footer() {
       </div>
 
       <div className="bg-white border-t text-center py-4 text-gray-400 text-xs">
-        © 2021 <span className="font-semibold text-gray-600">Erdunt</span>. {t("footer.rights")}&nbsp;|&nbsp;
+        © 2021 <span className="font-semibold text-gray-600">Baincon</span>. {t("footer.rights")}&nbsp;|&nbsp;
         <a href="#">{t("footer.investors")}</a>&nbsp;|&nbsp;
         <a href="#">{t("footer.careers")}</a>&nbsp;|&nbsp;
         <a href="#">{t("footer.downloads")}</a>

@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { useLocale } from "@/locales/LocaleProvider";
+import Image from "next/image";
+
 
 const FactorySlider = () => {
     const { t } = useLocale();
@@ -12,43 +14,67 @@ const FactorySlider = () => {
     const projects = [
         {
             id: 1,
-            category: t("projects.oil.category"),
-            title: t("projects.oil.title"),
-            description: t("projects.oil.description"),
-            image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&q=80",
-            date: "30-11-2020",
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair1.jpg",
+            date: "01-10-2025",
         },
         {
             id: 2,
-            category: t("projects.engineering.category"),
-            title: t("projects.engineering.title"),
-            description: t("projects.engineering.description"),
-            image: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80",
-            date: "30-11-2020",
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair2.jpg",
+            date: "01-10-2025",
         },
         {
             id: 3,
-            category: t("projects.manufacturing.category"),
-            title: t("projects.manufacturing.title"),
-            description: t("projects.manufacturing.description"),
-            image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
-            date: "30-11-2020",
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair3.jpg",
+            date: "01-10-2025",
         },
         {
             id: 4,
-            category: t("projects.power.category"),
-            title: t("projects.power.title"),
-            description: t("projects.power.description"),
-            image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80",
-            date: "30-11-2020",
+            category: t("services.pipeInsulation.title"),
+            title: t("services.pipeInsulation.subtitle"),
+            description: t("services.pipeInsulation.description"),
+            image: "/images/repair4.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 6,
+            category: t("services.constructionMaterials.title"),
+            title: t("services.constructionMaterials.subtitle"),
+            description: t("services.constructionMaterials.description"),
+            image: "/images/repair5.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 7,
+            category: t("services.constructionMaterials.title"),
+            title: t("services.constructionMaterials.subtitle"),
+            description: t("services.constructionMaterials.description"),
+            image: "/images/repair6.jpg",
+            date: "01-10-2025",
         },
         {
             id: 5,
-            category: t("projects.automotive.category"),
-            title: t("projects.automotive.title"),
-            description: t("projects.automotive.description"),
-            image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
-            date: "30-11-2020",
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair1.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 8,
+            category: t("services.pipeInsulation.title"),
+            title: t("services.pipeInsulation.subtitle"),
+            description: t("services.pipeInsulation.description"),
+            image: "/images/repair7.jpg",
+            date: "01-10-2025",
         },
     ];
 
@@ -87,7 +113,7 @@ const FactorySlider = () => {
                         </span>
                     </div>
                     <h1 className="text-5xl font-bold text-gray-900 mb-6">{t("projects.sectionTitle")}</h1>
-                    <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">{t("projects.sectionDescription")}</p>
+                    {/* <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">{t("projects.sectionDescription")}</p> */}
                 </div>
 
                 <div className="relative">
@@ -110,10 +136,11 @@ const FactorySlider = () => {
                                 >
                                     <div className="group relative bg-white shadow-lg overflow-hidden h-full">
                                         <div className="relative h-80 overflow-hidden">
-                                            <img
+                                            <Image
                                                 src={item.image}
                                                 alt={item.title}
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                fill
+                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                         </div>
