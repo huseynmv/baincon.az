@@ -64,7 +64,7 @@ export default function HeaderTop() {
                     rel="noopener noreferrer"
                     className="hover:underline"
                   >
-                    (+994) 51 123 45 67
+                    (+994) 50 671 71 93
                   </a>
                 </span>
               }

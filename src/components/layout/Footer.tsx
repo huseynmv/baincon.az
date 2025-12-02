@@ -74,17 +74,18 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-500">
               <li className="flex items-start space-x-2">
                 <Phone className="w-4 h-4 mt-1 text-orange-500" />
-                <span>+1 (934) 256 7850</span>
+                <span>+994 55 206 8989</span>
+                <span>+994 50 671 7193</span>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-1 text-orange-500" />
                 <span>
-                  950 Alpaca, Virginia <br /> 32809 - United States
+                  {t("header.addressLabel")} <br /> {t("header.addressValue")}
                 </span>
               </li>
               <li className="flex items-start space-x-2">
                 <Mail className="w-4 h-4 mt-1 text-orange-500" />
-                <span>info@example.com</span>
+                <span>office@baincon.az</span>
               </li>
               <li className="flex items-start space-x-2">
                 <Clock className="w-4 h-4 mt-1 text-orange-500" />
@@ -96,10 +97,7 @@ export default function Footer() {
       </div>
 
       <div className="bg-white border-t text-center py-4 text-gray-400 text-xs">
-        © 2021 <span className="font-semibold text-gray-600">Baincon</span>. {t("footer.rights")}&nbsp;|&nbsp;
-        <a href="#">{t("footer.investors")}</a>&nbsp;|&nbsp;
-        <a href="#">{t("footer.careers")}</a>&nbsp;|&nbsp;
-        <a href="#">{t("footer.downloads")}</a>
+        © 2025 <span className="font-semibold text-gray-600">Baincon</span>. {t("footer.rights")}&nbsp;|&nbsp;
       </div>
     </footer>
   );

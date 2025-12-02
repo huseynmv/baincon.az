@@ -12,24 +12,39 @@ type MenuItem = {
   children?: { key: string; href: string }[];
 };
 
+//   { key: "menu.about", href: "#about" },
+//   {
+//     key: "menu.services",
+//     children: [
+//       { key: "menu.services.repair", href: "/services/repair" },
+//       { key: "menu.services.oilEquipment", href: "/services/oil-equipment" },
+//       { key: "menu.services.pipeInsulation", href: "/services/pipe-insulation" },
+//       { key: "menu.services.constructionMaterials", href: "/services/construction-materials" },
+//       { key: "menu.services.highPressurePumps", href: "/services/high-pressure-pumps" },
+//       { key: "menu.services.oilPipes", href: "/services/oil-pipes" },
+//       { key: "menu.services.pipeCleaning", href: "/services/pipe-cleaning" },
+//     ],
+//   },
+//   { key: "menu.projects", href: "#projects" },
+//   { key: "menu.contact", href: "#contact" },
+// ];
 export const MENU: MenuItem[] = [
   { key: "menu.about", href: "#about" },
   {
     key: "menu.services",
     children: [
-      { key: "menu.services.repair", href: "/services/repair" },
-      { key: "menu.services.oilEquipment", href: "/services/oil-equipment" },
-      { key: "menu.services.pipeInsulation", href: "/services/pipe-insulation" },
-      { key: "menu.services.constructionMaterials", href: "/services/construction-materials" },
-      { key: "menu.services.highPressurePumps", href: "/services/high-pressure-pumps" },
-      { key: "menu.services.oilPipes", href: "/services/oil-pipes" },
-      { key: "menu.services.pipeCleaning", href: "/services/pipe-cleaning" },
+      { key: "menu.services.repair", href: "/services/temir-tikinti" },
+      { key: "menu.services.oilEquipment", href: "/services/neft-avadanliqlar" },
+      { key: "menu.services.pipeInsulation", href: "/services/borularin-izolyasiyasi" },
+      { key: "menu.services.constructionMaterials", href: "/services/tikinti-materiallari" },
+      { key: "menu.services.highPressurePumps", href: "/services/yuksek-tezyiqli-nasoslar" },
+      { key: "menu.services.oilPipes", href: "/services/neft-borulari" },
+      { key: "menu.services.pipeCleaning", href: "/services/borularin-yuyulmasi" },
     ],
   },
   { key: "menu.projects", href: "#projects" },
   { key: "menu.contact", href: "#contact" },
 ];
-
 export default function MenuItems() {
   const [open, setOpen] = useState(false);
   const { t, locale, setLocale } = useLocale();
