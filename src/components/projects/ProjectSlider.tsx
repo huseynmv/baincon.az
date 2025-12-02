@@ -44,14 +44,14 @@ const FactorySlider = () => {
             image: "/images/repair4.jpg",
             date: "01-10-2025",
         },
-        {
-            id: 6,
-            category: t("services.constructionMaterials.title"),
-            title: t("services.constructionMaterials.subtitle"),
-            description: t("services.constructionMaterials.description"),
-            image: "/images/repair5.jpg",
-            date: "01-10-2025",
-        },
+        // {
+        //     id: 6,
+        //     category: t("services.constructionMaterials.title"),
+        //     title: t("services.constructionMaterials.subtitle"),
+        //     description: t("services.constructionMaterials.description"),
+        //     image: "/images/repair5.jpg",
+        //     date: "01-10-2025",
+        // },
         {
             id: 7,
             category: t("services.constructionMaterials.title"),
@@ -61,11 +61,67 @@ const FactorySlider = () => {
             date: "01-10-2025",
         },
         {
+            id: 12,
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair8.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 9,
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair13.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 10,
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair10.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 11,
+            category: t("services.repair.title"),
+            title: t("services.repair.subtitle"),
+            description: t("services.repair.description"),
+            image: "/images/repair11.jpg",
+            date: "01-10-2025",
+        },
+        {
             id: 5,
             category: t("services.repair.title"),
             title: t("services.repair.subtitle"),
             description: t("services.repair.description"),
             image: "/images/repair1.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 14,
+            category: t("services.oilEquipment.title"),
+            title: t("services.oilEquipment.subtitle"),
+            description: t("services.oilEquipment.description"),
+            image: "/images/oil1.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 15,
+            category: t("services.oilEquipment.title"),
+            title: t("services.oilEquipment.subtitle"),
+            description: t("services.oilEquipment.description"),
+            image: "/images/oil2.jpg",
+            date: "01-10-2025",
+        },
+        {
+            id: 16,
+            category: t("services.oilEquipment.title"),
+            title: t("services.oilEquipment.subtitle"),
+            description: t("services.oilEquipment.description"),
+            image: "/images/oil3.jpg",
             date: "01-10-2025",
         },
         {
@@ -113,7 +169,6 @@ const FactorySlider = () => {
                         </span>
                     </div>
                     <h1 className="text-5xl font-bold text-gray-900 mb-6">{t("projects.sectionTitle")}</h1>
-                    {/* <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">{t("projects.sectionDescription")}</p> */}
                 </div>
 
                 <div className="relative">
@@ -134,8 +189,8 @@ const FactorySlider = () => {
                                         width: `calc(${100 / itemsPerPage}% - ${(getGapSize() * (itemsPerPage - 1)) / itemsPerPage}px)`,
                                     }}
                                 >
-                                    <div className="group relative bg-white shadow-lg overflow-hidden h-full">
-                                        <div className="relative h-80 overflow-hidden">
+                                    <div className="group relative bg-white shadow-lg overflow-hidden h-full flex flex-col">
+                                        <div className="relative h-80 w-full overflow-hidden">
                                             <Image
                                                 src={item.image}
                                                 alt={item.title}
@@ -144,15 +199,13 @@ const FactorySlider = () => {
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                         </div>
-
-                                        <div className="relative -mt-20 mx-6 bg-white p-8 shadow-xl">
+                                        <div className="bg-white p-6 flex flex-col flex-1">
                                             <span className="text-orange-500 text-sm font-medium tracking-wider uppercase">
                                                 {item.category}
                                             </span>
                                             <h3 className="text-2xl font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
-                                            <p className="text-gray-600 text-sm leading-relaxed mb-6">{item.description}</p>
-
-                                            <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                                            <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">{item.description}</p>
+                                            <div className="flex items-center justify-between pt-4 border-t border-gray-200 mt-auto">
                                                 <button className="w-12 h-12 bg-blue-900 text-white flex items-center justify-center hover:bg-orange-500 transition-colors duration-300">
                                                     <Plus className="w-5 h-5" />
                                                 </button>
@@ -163,6 +216,7 @@ const FactorySlider = () => {
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             ))}
                         </div>
