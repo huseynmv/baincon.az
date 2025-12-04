@@ -4,135 +4,15 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { useLocale } from "@/locales/LocaleProvider";
 import Image from "next/image";
-
+import { useProjects } from "./projectsData";
 
 const FactorySlider = () => {
     const { t } = useLocale();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(3);
+    const projects = useProjects();
 
-    const projects = [
-        {
-            id: 1,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair1.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 2,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair2.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 3,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair3.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 4,
-            category: t("services.pipeInsulation.title"),
-            title: t("services.pipeInsulation.subtitle"),
-            description: t("services.pipeInsulation.description"),
-            image: "/images/repair4.jpg",
-            date: "01-10-2025",
-        },
-        // {
-        //     id: 6,
-        //     category: t("services.constructionMaterials.title"),
-        //     title: t("services.constructionMaterials.subtitle"),
-        //     description: t("services.constructionMaterials.description"),
-        //     image: "/images/repair5.jpg",
-        //     date: "01-10-2025",
-        // },
-        {
-            id: 7,
-            category: t("services.constructionMaterials.title"),
-            title: t("services.constructionMaterials.subtitle"),
-            description: t("services.constructionMaterials.description"),
-            image: "/images/repair6.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 12,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair8.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 9,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair13.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 10,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair10.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 11,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair11.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 5,
-            category: t("services.repair.title"),
-            title: t("services.repair.subtitle"),
-            description: t("services.repair.description"),
-            image: "/images/repair1.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 14,
-            category: t("services.oilEquipment.title"),
-            title: t("services.oilEquipment.subtitle"),
-            description: t("services.oilEquipment.description"),
-            image: "/images/oil1.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 15,
-            category: t("services.oilEquipment.title"),
-            title: t("services.oilEquipment.subtitle"),
-            description: t("services.oilEquipment.description"),
-            image: "/images/oil2.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 16,
-            category: t("services.oilEquipment.title"),
-            title: t("services.oilEquipment.subtitle"),
-            description: t("services.oilEquipment.description"),
-            image: "/images/oil3.jpg",
-            date: "01-10-2025",
-        },
-        {
-            id: 8,
-            category: t("services.pipeInsulation.title"),
-            title: t("services.pipeInsulation.subtitle"),
-            description: t("services.pipeInsulation.description"),
-            image: "/images/repair7.jpg",
-            date: "01-10-2025",
-        },
-    ];
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -191,12 +71,23 @@ const FactorySlider = () => {
                                 >
                                     <div className="group relative bg-white shadow-lg overflow-hidden h-full flex flex-col">
                                         <div className="relative h-80 w-full overflow-hidden">
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
+                                            {item.video ? (
+                                                <video
+                                                    src={item.video}
+                                                    className="object-cover w-full h-full"
+                                                    autoPlay
+                                                    muted
+                                                    loop
+                                                    playsInline
+                                                />
+                                            ) : (
+                                                <Image
+                                                    src={item.image!}
+                                                    alt={item.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                                />
+                                            )}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                         </div>
                                         <div className="bg-white p-6 flex flex-col flex-1">
