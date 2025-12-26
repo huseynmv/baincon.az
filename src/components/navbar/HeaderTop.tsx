@@ -30,6 +30,7 @@ function InfoItem({
   return href ? <a href={href} className="group block">{Content}</a> : Content;
 }
 
+
 export default function HeaderTop() {
   const { locale, setLocale, t } = useLocale();
 
