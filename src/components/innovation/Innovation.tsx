@@ -33,7 +33,7 @@ export default function InnovationSection() {
         const TARGET = 70;
         const DURATION = 2000;
 
-        let raf = 0;
+        let raf = 0
         const start = performance.now();
 
         const step = (now: number) => {
