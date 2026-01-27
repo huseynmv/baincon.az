@@ -50,7 +50,7 @@ export default function HeaderTop() {
               label={t("header.callLabel")}
               value={
                 <span className="space-x-2">
-                  <a
+                  {/* <a
                     href="https://wa.me/994552068989"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -58,7 +58,7 @@ export default function HeaderTop() {
                   >
                     (+994) 55 206 89 89
                   </a>
-                  <br />
+                  <br /> */}
                   <a
                     href="https://wa.me/994516717193"
                     target="_blank"
